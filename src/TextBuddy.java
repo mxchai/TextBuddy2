@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class TextBuddy {
 
     private static final String MESSAGE_COMMAND_PROMPT = "Command: ";
-    private static final String MESSAGE_READY = "Welcome to TextBuddy. %s  is ready for use."; // this should be in controller actually
+    private static final String MESSAGE_READY = "Welcome to TextBuddy. %s is ready for use."; // this should be in controller actually
 
     private static final int PARAM_POSITION_FILENAME = 0;
 
@@ -43,7 +43,7 @@ public class TextBuddy {
     }
 
     public static void display(String result) {
-        System.out.println(result);
+        System.out.print(result);
     }
 
     public static void printWelcomeMessage(String fileName){

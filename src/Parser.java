@@ -1,9 +1,7 @@
 /*
 
-The Parser object parses the input from the user, and creates a Command object.
-The Parser object makes no assumption about the input. It only separates it into
-the commandAction and argument.
-Validity check is done by the Command object.
+The Parser object parses the input from the user, and creates a Command object,
+which is then returned to the Controller.
 
  */
 
