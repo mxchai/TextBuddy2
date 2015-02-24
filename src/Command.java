@@ -3,15 +3,26 @@ public class Command {
         DISPLAY, ADD, DELETE, CLEAR, ERROR;
     }
 
-    private String input;
     private COMMAND_TYPE commandType;
-    private String arguments;
+    private String argument;
+    //private String input;
 
-    public Command(String input) {
+
+    public Command() {
+        commandType = COMMAND_TYPE.ERROR;
+    }
+
+    public Command(String commandAction){
 
     }
 
+    public Command(String commandAction, String argument) {
 
+    }
+
+    public COMMAND_TYPE getCommandType(){
+        return null;
+    }
 
 
 
