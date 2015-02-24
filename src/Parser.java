@@ -11,11 +11,12 @@ public class Parser {
     private Command command;
 
     private static final int PARAM_POSITION_COMMAND = 0;
+    private static final int PARAM_ADD_POSITION = 4;
+    private static final int PARAM_DELETE_POSITION = 7;
     private static final int PARAM_NO_ARGUMENT_THRESHOLD = 1;
     private static final String PARAM_ADD = "add";
 
     public Command parse(String input) {
-        Command.COMMAND_TYPE commandType = command.getCommandType();
         String[] inputArray = splitInputIntoArray(input);
         command = createCommand(inputArray);
         return command;
@@ -31,23 +32,21 @@ public class Parser {
 
     private String extractArgument(String[] inputArray, String commandAction) {
         if (commandAction.equals(PARAM_ADD)){
-            String toInsert = String.join(" ", inputArray).substring(4).trim();
+            String toInsert = String.join(" ", inputArray).substring(PARAM_ADD_POSITION).trim();
             return toInsert;
         } else {
-            String lineNumber = String.join(" ", inputArray).substring(7);
+            String lineNumber = String.join(" ", inputArray).substring(PARAM_DELETE_POSITION);
             return lineNumber;
         }
     }
 
-    /**
-     *
-     * Add and Delete cannot have no arguments i.e. length must be > 1
-     */
-    public static boolean invalidArgument(String[] inputArray){
-        if (inputArray.length == 1){
-            return true;
-        } else {
+    public static boolean hasValidArguments(String[] commandParameters){
+        if (commandParameters.length == 1){
+            // add and delete must take in additional arguments, so commandParameters
+            // cannot only have 1 word
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -61,8 +60,12 @@ public class Parser {
         if (noArgument(inputArray)){
             command = new Command(commandAction);
         } else {
-            String argument = extractArgument(inputArray, commandAction);
-            command = new Command(commandAction, argument);
+            if (hasValidArguments(inputArray)){
+                String argument = extractArgument(inputArray, commandAction);
+                command = new Command(commandAction, argument);
+            } else {
+                command = new Command();
+            }
         }
         return command;
     }
