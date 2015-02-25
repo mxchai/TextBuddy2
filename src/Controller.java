@@ -9,6 +9,7 @@ public class Controller {
     private static final String MESSAGE_LINE_ADDED = "added to %s: '%s' \n";
     private static final String MESSAGE_LINE_DELETED = "deleted from %s: '%s' \n";
     private static final String MESSAGE_EMPTY = "%s is empty \n";
+    private static final String MESSAGE_EXIT = "%s has been successfully closed. \n";
 
     private Parser parser = new Parser();
     private Storage storage;
@@ -53,6 +54,8 @@ public class Controller {
                     } else {
                         return errorMessage();
                     }
+                case EXIT:
+                    return exit();
                 case ERROR:
                     return errorMessage();
             }
@@ -65,6 +68,10 @@ public class Controller {
 
     public String welcomeMessage() {
         return String.format(MESSAGE_READY, fileName);
+    }
+
+    public String exitMessage() {
+        return String.format(MESSAGE_EXIT, fileName);
     }
 
     public String errorMessage() {
@@ -96,5 +103,7 @@ public class Controller {
         return output;
     }
 
-
+    private String exit() {
+        return null;
+    }
 }

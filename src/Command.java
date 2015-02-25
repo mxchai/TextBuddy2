@@ -1,12 +1,13 @@
 public class Command {
     public static enum COMMAND_TYPE {
-        DISPLAY, ADD, DELETE, CLEAR, ERROR;
+        DISPLAY, ADD, DELETE, CLEAR, EXIT, ERROR;
     }
 
     private static final String PARAM_DISPLAY = "display";
     private static final String PARAM_ADD = "add";
     private static final String PARAM_DELETE = "delete";
     private static final String PARAM_CLEAR = "clear";
+    private static final String PARAM_EXIT = "exit";
 
     private COMMAND_TYPE commandType = COMMAND_TYPE.ERROR;
     private String argument;
@@ -20,6 +21,8 @@ public class Command {
             commandType = COMMAND_TYPE.DISPLAY;
         } else if (commandAction.equals(PARAM_CLEAR)){
             commandType = COMMAND_TYPE.CLEAR;
+        } else if (commandAction.equals(PARAM_EXIT)){
+            commandType = COMMAND_TYPE.EXIT;
         }
     }
 

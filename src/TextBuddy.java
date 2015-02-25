@@ -25,7 +25,12 @@ public class TextBuddy {
             System.out.print(MESSAGE_COMMAND_PROMPT);
             String input = getInput(sc);
             String result = controller.execute(input);
-            display(result);
+            if (result != null) {
+                display(result);
+            } else {
+                display(controller.exitMessage());
+                System.exit(1);
+            }
         }
     }
 
