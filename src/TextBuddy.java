@@ -7,11 +7,8 @@ import java.util.Scanner;
 public class TextBuddy {
 
     private static final String MESSAGE_COMMAND_PROMPT = "Command: ";
-
-
     private static final int PARAM_POSITION_FILENAME = 0;
 
-    private static final String TERMINATE = "terminate";
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -35,10 +32,6 @@ public class TextBuddy {
     public static String getInput(Scanner sc) {
         String input = sc.nextLine();
         return input;
-    }
-
-    public static Boolean notTerminated(String executionResult) {
-        return executionResult.equals(TERMINATE);
     }
 
     public static void display(String result) {

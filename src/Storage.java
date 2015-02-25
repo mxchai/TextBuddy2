@@ -16,7 +16,6 @@ public class Storage {
     private ArrayList<String> fileContent;
     private static final String TEMP_FILENAME = "temp.txt";
 
-
     public Storage(String fileName) {
         file = createFileIfNonExistent(fileName);
     }
@@ -33,11 +32,6 @@ public class Storage {
         }
         return file;
     }
-
-    // Getter
-//    public ArrayList<String> getFileContent() {
-//        return fileContent;
-//    }
 
     // Initialisation Methods
     public BufferedReader initBufferedReader(String fileName) {
@@ -80,7 +74,7 @@ public class Storage {
         }
     }
 
-    // Internal Methods
+    // Exposed Methods
     public ArrayList<String> getFileContent(String fileName) throws Exception{
         BufferedReader reader = initBufferedReader(fileName);
         ArrayList<String> fileContent = new ArrayList<String>();

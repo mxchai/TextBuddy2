@@ -26,6 +26,7 @@ public class Controller {
         // Execute the command here and returns the result to the View
         Command.COMMAND_TYPE commandType = command.getCommandType();
 
+        // Maybe can factor out into individual methods
         try {
             switch (commandType) {
                 case DISPLAY:
