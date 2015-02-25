@@ -8,7 +8,7 @@ public class Command {
     private static final String PARAM_DELETE = "delete";
     private static final String PARAM_CLEAR = "clear";
 
-    private COMMAND_TYPE commandType;
+    private COMMAND_TYPE commandType = COMMAND_TYPE.ERROR;
     private String argument;
 
     public Command() {
@@ -26,8 +26,10 @@ public class Command {
     public Command(String commandAction, String argument) {
         if (commandAction.equals(PARAM_ADD)){
             commandType = COMMAND_TYPE.ADD;
+            this.argument = argument;
         } else if (commandAction.equals(PARAM_DELETE)){
             commandType = COMMAND_TYPE.DELETE;
+            this.argument = argument;
         }
     }
 
