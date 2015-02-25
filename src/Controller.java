@@ -8,6 +8,7 @@ public class Controller {
     private static final String MESSAGE_CLEAR = "All file content has been cleared. \n";
     private static final String MESSAGE_LINE_ADDED = "added to %s: '%s' \n";
     private static final String MESSAGE_LINE_DELETED = "deleted from %s: '%s' \n";
+    private static final String MESSAGE_EMPTY = "%s is empty \n";
 
     private Parser parser = new Parser();
     private Storage storage;
@@ -39,10 +40,8 @@ public class Controller {
                     }
                 case DELETE:
                     int deleteArgument = Integer.parseInt(command.getArgument());
-                    System.out.println(deleteArgument);
                     String response = storage.deleteLine(fileName, deleteArgument);
-                    System.out.println(response);
-                    if (!Boolean.parseBoolean(response)){
+                    if (response != null){
                         return deleteLineFromFile(response);
                     } else {
                         return errorMessage();
@@ -72,6 +71,10 @@ public class Controller {
     }
 
     public String displayFile(ArrayList<String> fileContent) {
+        if (fileContent.size() == 0){
+            return String.format(MESSAGE_EMPTY, fileName);
+        }
+
         String display = "";
 
         int counter = 1;
@@ -79,7 +82,6 @@ public class Controller {
             display += counter + ". " + line + "\n";
             counter++;
         }
-
         return display;
     }
 

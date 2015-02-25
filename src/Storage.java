@@ -123,7 +123,7 @@ public class Storage {
         File temp = initFile(TEMP_FILENAME);
 
         BufferedReader reader = initBufferedReader(fileName);
-        PrintWriter printWriter = initPrintWriter(fileName);
+        PrintWriter printWriter = initPrintWriter(TEMP_FILENAME);
 
         List<String> allLines = Files.readAllLines(current.toPath());
         int numLines = allLines.size();

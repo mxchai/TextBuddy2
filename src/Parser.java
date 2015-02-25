@@ -59,7 +59,6 @@ public class Parser {
             if (hasValidArguments(inputArray)){
                 String argument = extractArgument(inputArray, commandAction);
                 command = new Command(commandAction, argument);
-                System.out.println("delet workzxc");
             } else {
                 command = new Command();
             }
