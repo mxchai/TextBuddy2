@@ -93,7 +93,7 @@ public class Storage {
         return fileContent;
     }
 
-    public boolean writeFile(String fileName, String toInsert) throws Exception{
+    public boolean writeFile(String fileName, String toInsert) {
         try {
             BufferedWriter writer = initBufferedWriters(fileName);
             writer.write(toInsert);
@@ -146,7 +146,18 @@ public class Storage {
         return deletedLine;
     }
 
-    public boolean isValidLineNumber(int commandArguments, int totalNumLines){
+    public boolean sortFile(String fileName) throws Exception {
+        fileContent = getFileContent(fileName);
+        clearFile(fileName);
+
+
+
+
+        return false;
+    }
+
+    // Private methods
+    private boolean isValidLineNumber(int commandArguments, int totalNumLines){
         return commandArguments <= totalNumLines;
     }
 }

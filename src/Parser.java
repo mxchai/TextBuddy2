@@ -5,6 +5,8 @@ which is then returned to the Controller.
 
  */
 
+import java.util.ArrayList;
+
 public class Parser {
     private Command command;
 
@@ -13,6 +15,10 @@ public class Parser {
     private static final int PARAM_DELETE_POSITION = 7;
     private static final int PARAM_NO_ARGUMENT_THRESHOLD = 1;
     private static final String PARAM_ADD = "add";
+    private static final String PARAM_SORT = "sort";
+    private static final String PARAM_DELETE = "delete";
+
+    private static final String[] PARAM_WITH_ARG = {PARAM_ADD, PARAM_DELETE};
 
     public Command parse(String input) {
         String[] inputArray = splitInputIntoArray(input);
@@ -54,6 +60,8 @@ public class Parser {
 
     private Command createCommand(String[] inputArray){
         String commandAction = extractCommandAction(inputArray);
+
+
 
         if (commandAction.equals("add") || commandAction.equals("delete")) {
             if (hasValidArguments(inputArray)){
