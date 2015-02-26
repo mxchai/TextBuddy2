@@ -1,6 +1,6 @@
 public class Command {
     public static enum COMMAND_TYPE {
-        DISPLAY, ADD, DELETE, CLEAR, EXIT, ERROR, SORT;
+        DISPLAY, ADD, DELETE, CLEAR, EXIT, ERROR, SORT, SEARCH;
     }
 
     private static final String PARAM_DISPLAY = "display";
@@ -38,6 +38,9 @@ public class Command {
             this.argument = argument;
         } else if (commandAction.equals(PARAM_DELETE)){
             commandType = COMMAND_TYPE.DELETE;
+            this.argument = argument;
+        } else if (commandAction.equals(PARAM_SORT)){
+            commandType = COMMAND_TYPE.SEARCH;
             this.argument = argument;
         }
     }

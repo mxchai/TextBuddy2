@@ -15,10 +15,10 @@ public class Parser {
     private static final int PARAM_DELETE_POSITION = 7;
     private static final int PARAM_NO_ARGUMENT_THRESHOLD = 1;
     private static final String PARAM_ADD = "add";
-    private static final String PARAM_SORT = "sort";
     private static final String PARAM_DELETE = "delete";
+    private static final String PARAM_SEARCH = "search";
 
-    private static final String[] PARAM_WITH_ARG = {PARAM_ADD, PARAM_DELETE};
+    private static final String[] PARAM_WITH_ARG = {PARAM_ADD, PARAM_DELETE, PARAM_SEARCH};
 
     public Command parse(String input) {
         String[] inputArray = splitInputIntoArray(input);
@@ -66,6 +66,7 @@ public class Parser {
                 String argument = extractArgument(inputArray, commandAction);
                 command = new Command(commandAction, argument);
             } else {
+                // Command constructor with COMMAND_TYPE.ERROR
                 command = new Command();
             }
         } else {

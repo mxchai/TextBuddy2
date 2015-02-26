@@ -107,10 +107,14 @@ public class Storage {
         }
     }
 
-    public boolean clearFile(String fileName) throws Exception{
-        PrintWriter printWriter = initPrintWriter(fileName);
-        printWriter.close();
-        return true;
+    public boolean clearFile(String fileName) {
+        try {
+            PrintWriter printWriter = initPrintWriter(fileName);
+            printWriter.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 

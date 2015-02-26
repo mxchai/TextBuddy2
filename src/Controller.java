@@ -106,6 +106,11 @@ public class Controller {
         return output;
     }
 
+    public String searchLineFromFile(String argument, ArrayList<String> fileContent) {
+        return null;
+    }
+
+    // Private methods
     private String exit() {
         return null;
     }
