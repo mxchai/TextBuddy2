@@ -163,7 +163,18 @@ public class Storage {
     }
 
     public ArrayList<String> searchFile(String fileName, String toFind) throws Exception {
-        return null;
+        ArrayList<String> fileContent = getFileContent(fileName);
+        ArrayList<String> foundLine = new ArrayList();
+        Integer counter = new Integer(1);
+
+        for (String line : fileContent) {
+            if (toFind.equals(line)){
+                foundLine.add(counter.toString());
+            }
+            counter++;
+        }
+
+        return foundLine;
     }
 
     // Private methods
