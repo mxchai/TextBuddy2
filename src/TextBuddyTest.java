@@ -1,54 +1,48 @@
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.Assert.*;
 
 public class TextBuddyTest {
+    private static final String PARAM_TEST_FILE_NAME = "test.txt";
+    private static final String[] PARAM_POPULATE = {"delta", "bravo", "alpha", "charlie", "bravo"};
 
     @Test
     public void oldTest() throws Exception {
 
-        Storage storage = new Storage("temp.txt");
-        storage.clearFile("temp.txt");
+        Storage storage = new Storage(PARAM_TEST_FILE_NAME);
+        storage.clearFile(PARAM_TEST_FILE_NAME);
         ArrayList<String> testArray = new ArrayList<String>();
 
         testArray.add("line 1");
 
-        storage.writeFile("temp.txt", "line 1");
+        storage.writeFile(PARAM_TEST_FILE_NAME, "line 1");
 
-        assertEquals("[line 1]", storage.getFileContent("temp.txt").toString());
+        assertEquals("[line 1]", storage.getFileContent(PARAM_TEST_FILE_NAME).toString());
     }
 
     @Test
     public void storageTest() throws Exception {
-        Storage storage = new Storage("sort.txt");
-        storage.clearFile("sort.txt");
-        ArrayList<String> sortArray = new ArrayList<String>();
-
-        sortArray.add("delta");
-        sortArray.add("alpha");
-        sortArray.add("charlie");
-        sortArray.add("bravo");
-
-        storage.writeFile("sort.txt", "delta");
-        storage.writeFile("sort.txt", "alpha");
-        storage.writeFile("sort.txt", "charlie");
-        storage.writeFile("sort.txt", "bravo");
-
-        storage.sortFile("sort.txt");
-
+        Storage storage = populateStorage(PARAM_TEST_FILE_NAME);
+        ArrayList<String> sortArray = populateArrayListString();
+        storage.sortFile(PARAM_TEST_FILE_NAME);
         Collections.sort(sortArray);
 
-        storage.sortFile("sort.txt");
-        assertEquals("Storage sorts in alphabetical order", sortArray.toString(), storage.sortFile("sort.txt").toString());
+
+        assertEquals("Storage sorts in alphabetical order", sortArray.toString(),
+                storage.sortFile(PARAM_TEST_FILE_NAME).toString());
     }
 
     @Test
     public void commandTest() throws Exception {
         Command command = new Command();
-        
+        assertEquals("Command constructor without argument has error command type", Command.COMMAND_TYPE.ERROR,
+                command.getCommandType());
+        assertEquals("Command constructor without argument has no argument", null, command.getArgument());
+
     }
 
     @Test
@@ -59,5 +53,23 @@ public class TextBuddyTest {
     @Test
     public void controllerTest() throws Exception {
 
+    }
+
+    // Private methods
+    private Storage populateStorage(String fileName) throws Exception {
+        Storage storage = new Storage(fileName);
+        storage.clearFile(PARAM_TEST_FILE_NAME);
+        ArrayList<String> entries = new ArrayList(Arrays.asList(PARAM_POPULATE));
+
+        for (String entry : entries) {
+            storage.writeFile(fileName, entry);
+        }
+
+        return storage;
+    }
+
+    private ArrayList<String> populateArrayListString(){
+        ArrayList<String> entries = new ArrayList(Arrays.asList(PARAM_POPULATE));
+        return entries;
     }
 }

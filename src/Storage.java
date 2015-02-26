@@ -162,6 +162,10 @@ public class Storage {
         return fileContent;
     }
 
+    public ArrayList<String> searchFile(String fileName, String toFind) throws Exception {
+        return null;
+    }
+
     // Private methods
     private boolean isValidLineNumber(int commandArguments, int totalNumLines){
         return commandArguments <= totalNumLines;
