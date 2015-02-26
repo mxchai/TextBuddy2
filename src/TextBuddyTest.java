@@ -52,7 +52,18 @@ public class TextBuddyTest {
 
     @Test
     public void parserTest() throws Exception {
+        Parser parser;
+        Command command;
 
+        parser = new Parser();
+        command = parser.parse("search this");
+        assertEquals("Parser 'search this' should return correct COMMAND_TYPE", Command.COMMAND_TYPE.SEARCH,
+                command.getCommandType());
+
+        parser = new Parser();
+        command = parser.parse("add this");
+        assertEquals("Parser 'add this' should return correct COMMAND_TYPE", Command.COMMAND_TYPE.ADD,
+                command.getCommandType());
     }
 
     @Test

@@ -10,6 +10,7 @@ public class Controller {
     private static final String MESSAGE_LINE_DELETED = "deleted from %s: '%s' \n";
     private static final String MESSAGE_EMPTY = "%s is empty \n";
     private static final String MESSAGE_EXIT = "%s has been successfully closed. \n";
+    private static final String MESSAGE_CANNOT_BE_FOUND = "%s cannot be found. \n";
 
     private Parser parser = new Parser();
     private Storage storage;
@@ -59,6 +60,10 @@ public class Controller {
                 case SORT:
                     ArrayList<String> sortedFileContent = storage.sortFile(fileName);
                     return displayFile(sortedFileContent);
+                case SEARCH:
+                    String toFind = command.getArgument();
+                    ArrayList<String> foundLines = storage.searchFile(fileName, toFind);
+                    return displaySearchLineFromFile(toFind, foundLines);
                 case ERROR:
                     return errorMessage();
             }
@@ -106,8 +111,18 @@ public class Controller {
         return output;
     }
 
-    public String searchLineFromFile(String argument, ArrayList<String> fileContent) {
-        return null;
+    public String displaySearchLineFromFile(String argument, ArrayList<String> foundLines) {
+        if (foundLines.size() == 0){
+            return String.format(MESSAGE_CANNOT_BE_FOUND, argument);
+        }
+
+        String display = "";
+
+        for (String number : foundLines) {
+            display += number + ". " + argument + "\n";
+        }
+
+        return display;
     }
 
     // Private methods

@@ -13,7 +13,7 @@ public class Parser {
     private static final int PARAM_POSITION_COMMAND = 0;
     private static final int PARAM_ADD_POSITION = 4;
     private static final int PARAM_DELETE_POSITION = 7;
-    private static final int PARAM_NO_ARGUMENT_THRESHOLD = 1;
+    private static final int PARAM_SEARCH_POSITION = 7;
     private static final String PARAM_ADD = "add";
     private static final String PARAM_DELETE = "delete";
     private static final String PARAM_SEARCH = "search";
@@ -38,15 +38,19 @@ public class Parser {
         if (commandAction.equals(PARAM_ADD)){
             String toInsert = String.join(" ", inputArray).substring(PARAM_ADD_POSITION).trim();
             return toInsert;
-        } else {
-            String lineNumber = String.join(" ", inputArray).substring(PARAM_DELETE_POSITION);
+        } else if (commandAction.equals(PARAM_DELETE)){
+            String lineNumber = String.join(" ", inputArray).substring(PARAM_DELETE_POSITION).trim();
             return lineNumber;
+        } else if (commandAction.equals(PARAM_SEARCH)){
+            String toFind = String.join(" ", inputArray).substring(PARAM_SEARCH_POSITION).trim();
+            return toFind;
         }
+        return null;
     }
 
     public static boolean hasValidArguments(String[] commandParameters){
         if (commandParameters.length == 1){
-            // add and delete must take in additional arguments, so commandParameters
+            // add, delete and search must take in additional arguments, so commandParameters
             // cannot only have 1 word
             return false;
         } else {
@@ -54,11 +58,7 @@ public class Parser {
         }
     }
 
-    private boolean noArgument(String[] inputArray){
-        return !(inputArray.length > PARAM_NO_ARGUMENT_THRESHOLD);
-    }
-
-    private Command createCommand(String[] inputArray){
+    public Command createCommand(String[] inputArray){
         String commandAction = extractCommandAction(inputArray);
 
         if (stringArrayContains(commandAction, PARAM_WITH_ARG)) {

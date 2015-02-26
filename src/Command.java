@@ -9,6 +9,7 @@ public class Command {
     private static final String PARAM_CLEAR = "clear";
     private static final String PARAM_EXIT = "exit";
     private static final String PARAM_SORT = "sort";
+    private static final String PARAM_SEARCH = "search";
 
     private COMMAND_TYPE commandType = COMMAND_TYPE.ERROR;
     private String argument;
@@ -39,7 +40,7 @@ public class Command {
         } else if (commandAction.equals(PARAM_DELETE)){
             commandType = COMMAND_TYPE.DELETE;
             this.argument = argument;
-        } else if (commandAction.equals(PARAM_SORT)){
+        } else if (commandAction.equals(PARAM_SEARCH)){
             commandType = COMMAND_TYPE.SEARCH;
             this.argument = argument;
         }
