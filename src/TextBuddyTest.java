@@ -31,9 +31,14 @@ public class TextBuddyTest {
         storage.sortFile(PARAM_TEST_FILE_NAME);
         Collections.sort(sortArray);
 
-
         assertEquals("Storage sorts in alphabetical order", sortArray.toString(),
                 storage.sortFile(PARAM_TEST_FILE_NAME).toString());
+
+        Storage searchStorage = populateStorage(PARAM_TEST_FILE_NAME);
+        String[] lines = {"2", "bravo", "5", "bravo"};
+        ArrayList<String> foundLines = new ArrayList(Arrays.asList(lines));
+        assertEquals("Storage returns searched lines as an ArrayList<String>",
+                foundLines, searchStorage.searchFile(PARAM_TEST_FILE_NAME, "bravo"));
     }
 
     @Test

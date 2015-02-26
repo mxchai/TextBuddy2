@@ -1,5 +1,5 @@
-alpha
-bravo
-bravo
-charlie
 delta
+bravo
+alpha
+charlie
+bravo
