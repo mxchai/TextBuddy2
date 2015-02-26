@@ -56,6 +56,9 @@ public class Controller {
                     }
                 case EXIT:
                     return exit();
+                case SORT:
+                    ArrayList<String> sortedFileContent = storage.sortFile(fileName);
+                    return displayFile(sortedFileContent);
                 case ERROR:
                     return errorMessage();
             }

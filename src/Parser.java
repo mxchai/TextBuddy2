@@ -61,9 +61,7 @@ public class Parser {
     private Command createCommand(String[] inputArray){
         String commandAction = extractCommandAction(inputArray);
 
-
-
-        if (commandAction.equals("add") || commandAction.equals("delete")) {
+        if (stringArrayContains(commandAction, PARAM_WITH_ARG)) {
             if (hasValidArguments(inputArray)){
                 String argument = extractArgument(inputArray, commandAction);
                 command = new Command(commandAction, argument);
@@ -74,6 +72,15 @@ public class Parser {
             command = new Command(commandAction);
         }
         return command;
+    }
+
+    private boolean stringArrayContains(String item, String[] array) {
+        for (String element : array) {
+            if (item.equals(element)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -6,7 +6,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import java.nio.file.Files;
@@ -146,14 +148,18 @@ public class Storage {
         return deletedLine;
     }
 
-    public boolean sortFile(String fileName) throws Exception {
+    public ArrayList<String> sortFile(String fileName) throws Exception {
         fileContent = getFileContent(fileName);
         clearFile(fileName);
 
+        Collections.sort(fileContent);
 
+        for (String line : fileContent) {
+            writeFile(fileName, line);
+        }
 
-
-        return false;
+        fileContent = getFileContent(fileName);
+        return fileContent;
     }
 
     // Private methods
