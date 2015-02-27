@@ -1,3 +1,10 @@
+/*
+
+Storage class directly manipulates the underlying text file.
+Also contains logic necessary to perform the operations: add, delete, etc.
+
+ */
+
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +13,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,12 +28,12 @@ public class Storage {
         file = createFileIfNonExistent(fileName);
     }
 
-    public static File createFileIfNonExistent(String fileName){
+    public static File createFileIfNonExistent(String fileName) {
         File file = new File(fileName);
-        if(!file.exists()){
+        if (!file.exists()) {
             try {
                 file.createNewFile();
-            } catch (IOException e){
+            } catch (IOException e) {
                 System.out.println("Cannot create file!");
                 System.exit(0);
             }
@@ -35,7 +41,7 @@ public class Storage {
         return file;
     }
 
-    // Initialisation Methods
+    // Initialisation methods
     public BufferedReader initBufferedReader(String fileName) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -76,8 +82,8 @@ public class Storage {
         }
     }
 
-    // Exposed Methods
-    public ArrayList<String> getFileContent(String fileName) throws Exception{
+    // Public methods
+    public ArrayList<String> getFileContent(String fileName) throws Exception {
         BufferedReader reader = initBufferedReader(fileName);
         ArrayList<String> fileContent = new ArrayList<String>();
         String line = null;
@@ -118,7 +124,7 @@ public class Storage {
     }
 
 
-    public String deleteLine(String fileName, int lineNumber) throws IOException{
+    public String deleteLine(String fileName, int lineNumber) throws IOException {
         File current = initFile(fileName);
         File temp = initFile(TEMP_FILENAME);
 
@@ -129,14 +135,14 @@ public class Storage {
         int numLines = allLines.size();
 
         // Validates line number for deletion
-        if (!isValidLineNumber(lineNumber, numLines)){
+        if (!isValidLineNumber(lineNumber, numLines)) {
             return null;
         }
 
         String line = null;
         String deletedLine = "not initialised";
         int currentLine = 1; // counter for line number
-        while ((line = reader.readLine()) != null){
+        while ((line = reader.readLine()) != null) {
             if (currentLine != lineNumber) {
                 printWriter.println(line);
             } else {
@@ -172,7 +178,7 @@ public class Storage {
         Integer counter = new Integer(1);
 
         for (String line : fileContent) {
-            if (toFind.equals(line)){
+            if (toFind.equals(line)) {
                 foundLine.add(counter.toString());
             }
             counter++;
@@ -182,7 +188,7 @@ public class Storage {
     }
 
     // Private methods
-    private boolean isValidLineNumber(int commandArguments, int totalNumLines){
+    private boolean isValidLineNumber(int commandArguments, int totalNumLines) {
         return commandArguments <= totalNumLines;
     }
 }

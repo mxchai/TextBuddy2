@@ -84,7 +84,7 @@ public class TextBuddyTest {
         return storage;
     }
 
-    private ArrayList<String> populateArrayListString(){
+    private ArrayList<String> populateArrayListString() {
         ArrayList<String> entries = new ArrayList(Arrays.asList(PARAM_POPULATE));
         return entries;
     }

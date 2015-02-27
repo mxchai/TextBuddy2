@@ -21,7 +21,7 @@ public class TextBuddy {
         System.out.println(controller.welcomeMessage());
 
         // Program loop
-        while(true){
+        while (true) {
             System.out.print(MESSAGE_COMMAND_PROMPT);
             String input = getInput(sc);
             String result = controller.execute(input);

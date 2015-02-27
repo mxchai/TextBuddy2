@@ -5,8 +5,6 @@ which is then returned to the Controller.
 
  */
 
-import java.util.ArrayList;
-
 public class Parser {
     private Command command;
 
@@ -26,43 +24,12 @@ public class Parser {
         return command;
     }
 
-    private String[] splitInputIntoArray(String input) {
-        return input.trim().split("\\s+");
-    }
-
-    private String extractCommandAction(String[] inputArray) {
-        return inputArray[PARAM_POSITION_COMMAND];
-    }
-
-    private String extractArgument(String[] inputArray, String commandAction) {
-        if (commandAction.equals(PARAM_ADD)){
-            String toInsert = String.join(" ", inputArray).substring(PARAM_ADD_POSITION).trim();
-            return toInsert;
-        } else if (commandAction.equals(PARAM_DELETE)){
-            String lineNumber = String.join(" ", inputArray).substring(PARAM_DELETE_POSITION).trim();
-            return lineNumber;
-        } else if (commandAction.equals(PARAM_SEARCH)){
-            String toFind = String.join(" ", inputArray).substring(PARAM_SEARCH_POSITION).trim();
-            return toFind;
-        }
-        return null;
-    }
-
-    public static boolean hasValidArguments(String[] commandParameters){
-        if (commandParameters.length == 1){
-            // add, delete and search must take in additional arguments, so commandParameters
-            // cannot only have 1 word
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public Command createCommand(String[] inputArray){
+    // Private methods
+    private Command createCommand(String[] inputArray) {
         String commandAction = extractCommandAction(inputArray);
 
         if (stringArrayContains(commandAction, PARAM_WITH_ARG)) {
-            if (hasValidArguments(inputArray)){
+            if (hasValidArguments(inputArray)) {
                 String argument = extractArgument(inputArray, commandAction);
                 command = new Command(commandAction, argument);
             } else {
@@ -75,13 +42,45 @@ public class Parser {
         return command;
     }
 
+    private static boolean hasValidArguments(String[] commandParameters) {
+        if (commandParameters.length == 1) {
+            // add, delete and search must take in additional arguments, so commandParameters
+            // cannot only have 1 word
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     private boolean stringArrayContains(String item, String[] array) {
         for (String element : array) {
-            if (item.equals(element)){
+            if (item.equals(element)) {
                 return true;
             }
         }
         return false;
+    }
+
+    private String[] splitInputIntoArray(String input) {
+        return input.trim().split("\\s+");
+    }
+
+    private String extractCommandAction(String[] inputArray) {
+        return inputArray[PARAM_POSITION_COMMAND];
+    }
+
+    private String extractArgument(String[] inputArray, String commandAction) {
+        if (commandAction.equals(PARAM_ADD)) {
+            String toInsert = String.join(" ", inputArray).substring(PARAM_ADD_POSITION).trim();
+            return toInsert;
+        } else if (commandAction.equals(PARAM_DELETE)) {
+            String lineNumber = String.join(" ", inputArray).substring(PARAM_DELETE_POSITION).trim();
+            return lineNumber;
+        } else if (commandAction.equals(PARAM_SEARCH)) {
+            String toFind = String.join(" ", inputArray).substring(PARAM_SEARCH_POSITION).trim();
+            return toFind;
+        }
+        return null;
     }
 
 }

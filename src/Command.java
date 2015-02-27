@@ -1,3 +1,10 @@
+/*
+
+Command objects that will be executed by the Controller.
+Only exists as a return value from the Parser object.
+
+ */
+
 public class Command {
     public static enum COMMAND_TYPE {
         DISPLAY, ADD, DELETE, CLEAR, EXIT, ERROR, SORT, SEARCH;
@@ -14,44 +21,44 @@ public class Command {
     private COMMAND_TYPE commandType = COMMAND_TYPE.ERROR;
     private String argument;
 
-    // Error constructor
+    // COMMAND_TYPE.ERROR constructor
     public Command() {
         commandType = COMMAND_TYPE.ERROR;
     }
 
     // Only commandAction, no argument
-    public Command(String commandAction){
-        if (commandAction.equals(PARAM_DISPLAY)){
+    public Command(String commandAction) {
+        if (commandAction.equals(PARAM_DISPLAY)) {
             commandType = COMMAND_TYPE.DISPLAY;
-        } else if (commandAction.equals(PARAM_CLEAR)){
+        } else if (commandAction.equals(PARAM_CLEAR)) {
             commandType = COMMAND_TYPE.CLEAR;
-        } else if (commandAction.equals(PARAM_EXIT)){
+        } else if (commandAction.equals(PARAM_EXIT)) {
             commandType = COMMAND_TYPE.EXIT;
-        } else if (commandAction.equals(PARAM_SORT)){
+        } else if (commandAction.equals(PARAM_SORT)) {
             commandType = COMMAND_TYPE.SORT;
         }
     }
 
     // commandAction and argument
     public Command(String commandAction, String argument) {
-        if (commandAction.equals(PARAM_ADD)){
+        if (commandAction.equals(PARAM_ADD)) {
             commandType = COMMAND_TYPE.ADD;
             this.argument = argument;
-        } else if (commandAction.equals(PARAM_DELETE)){
+        } else if (commandAction.equals(PARAM_DELETE)) {
             commandType = COMMAND_TYPE.DELETE;
             this.argument = argument;
-        } else if (commandAction.equals(PARAM_SEARCH)){
+        } else if (commandAction.equals(PARAM_SEARCH)) {
             commandType = COMMAND_TYPE.SEARCH;
             this.argument = argument;
         }
     }
 
     // Public getters
-    public COMMAND_TYPE getCommandType(){
+    public COMMAND_TYPE getCommandType() {
         return commandType;
     }
 
-    public String getArgument(){
+    public String getArgument() {
         return argument;
     }
 }

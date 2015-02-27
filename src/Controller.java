@@ -1,5 +1,10 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+/*
+
+Dispatches the input received from the TextBuddy main class, and returns a String
+to be displayed.
+
+ */
+
 import java.util.ArrayList;
 
 public class Controller {
@@ -28,7 +33,6 @@ public class Controller {
         // Execute the command here and returns the result to the View
         Command.COMMAND_TYPE commandType = command.getCommandType();
 
-        // Maybe can factor out into individual methods
         try {
             switch (commandType) {
                 case DISPLAY:
@@ -44,7 +48,7 @@ public class Controller {
                 case DELETE:
                     int deleteArgument = Integer.parseInt(command.getArgument());
                     String response = storage.deleteLine(fileName, deleteArgument);
-                    if (response != null){
+                    if (response != null) {
                         return deleteLineFromFile(response);
                     } else {
                         return errorMessage();
@@ -73,7 +77,7 @@ public class Controller {
         return errorMessage();
     }
 
-
+    // Public methods
     public String welcomeMessage() {
         return String.format(MESSAGE_READY, fileName);
     }
@@ -87,14 +91,14 @@ public class Controller {
     }
 
     public String displayFile(ArrayList<String> fileContent) {
-        if (fileContent.size() == 0){
+        if (fileContent.size() == 0) {
             return String.format(MESSAGE_EMPTY, fileName);
         }
 
         String display = "";
 
         int counter = 1;
-        for (String line : fileContent){
+        for (String line : fileContent) {
             display += counter + ". " + line + "\n";
             counter++;
         }
@@ -112,7 +116,7 @@ public class Controller {
     }
 
     public String displaySearchLineFromFile(String argument, ArrayList<String> foundLines) {
-        if (foundLines.size() == 0){
+        if (foundLines.size() == 0) {
             return String.format(MESSAGE_CANNOT_BE_FOUND, argument);
         }
 
