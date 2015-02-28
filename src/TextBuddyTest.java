@@ -26,7 +26,9 @@ public class TextBuddyTest {
 
     @Test
     public void storageTest() throws Exception {
-        Storage storage = populateStorage(PARAM_TEST_FILE_NAME);
+        Storage storage;
+
+        storage = populateStorage(PARAM_TEST_FILE_NAME);
         ArrayList<String> sortArray = populateArrayListString();
         storage.sortFile(PARAM_TEST_FILE_NAME);
         Collections.sort(sortArray);
@@ -34,11 +36,11 @@ public class TextBuddyTest {
         assertEquals("Storage sorts in alphabetical order", sortArray.toString(),
                 storage.sortFile(PARAM_TEST_FILE_NAME).toString());
 
-        Storage searchStorage = populateStorage(PARAM_TEST_FILE_NAME);
+        storage = populateStorage(PARAM_TEST_FILE_NAME);
         String[] lines = {"2", "5"};
         ArrayList<String> foundLines = new ArrayList(Arrays.asList(lines));
-        assertEquals("Storage returns searched lines as an ArrayList<String>",
-                foundLines, searchStorage.searchFile(PARAM_TEST_FILE_NAME, "bravo"));
+        assertEquals("Storage returns found lines as an ArrayList<String>",
+                foundLines, storage.searchFile(PARAM_TEST_FILE_NAME, "bravo"));
     }
 
     @Test
@@ -47,7 +49,6 @@ public class TextBuddyTest {
         assertEquals("Command constructor without argument has error command type", Command.COMMAND_TYPE.ERROR,
                 command.getCommandType());
         assertEquals("Command constructor without argument has no argument", null, command.getArgument());
-
     }
 
     @Test
@@ -64,11 +65,6 @@ public class TextBuddyTest {
         command = parser.parse("add this");
         assertEquals("Parser 'add this' should return correct COMMAND_TYPE", Command.COMMAND_TYPE.ADD,
                 command.getCommandType());
-    }
-
-    @Test
-    public void controllerTest() throws Exception {
-
     }
 
     // Private methods
