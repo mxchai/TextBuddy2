@@ -8,4 +8,4 @@ This program is used to manipulate text files. The user runs the java program wi
 4. **Display**: the file contents are displayed to the user, and each line marked with its line number
 5. **Sort**: the file contents are sorted in alphabetical order, and saved immediately to the file.
 6: **Search**: if the word supplied can be found in the text, the lines and their respective line number will be displayed to the user. If not found, the user will be alerted.
-7. **Exit**: the program exitsa
+7. **Exit**: the program exits
